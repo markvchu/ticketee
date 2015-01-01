@@ -1,0 +1,6 @@
+<% title(@project.name, @ticket.title, 'Tickets') %>
+<div>
+  <h2><%= @project.name %>/<%= @ticket.title %></h2>
+  <%= simple_format(@ticket.description) %>
+</div>
+
