@@ -1,5 +1,5 @@
 <% title(@project.name, @ticket.title, 'Tickets') %>
-<div>
+<div id="ticket">
   <h2><%= @project.name %>/<%= @ticket.title %></h2>
   <%= simple_format(@ticket.description) %>
 </div>
