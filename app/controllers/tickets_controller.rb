@@ -24,6 +24,12 @@ class TicketsController < ApplicationController
     end
   end
 
+  def destroy
+    @ticket.destroy
+
+    redirect_to @project, notice: 'Ticket has been deleted.'
+  end
+
   def create
     @ticket = @project.tickets.build(ticket_params)
     if @ticket.save
