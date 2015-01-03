@@ -4,7 +4,7 @@
           <h2><%= pluralize(@user.errors.count, 'error') %>
             prohibited this user from being saved:</h2>
           <ul>
-            <% @ticket.errors.full_messages.each do |msg| %>
+            <% @user.errors.full_messages.each do |msg| %>
                 <li><%= msg %></li>
             <% end %>
           </ul>
@@ -24,5 +24,9 @@
   <%= f.label :password_confirmation %><br>
   <%= f.password_field :password_confirmation %>
 </p>
-    <%= f.submit 'Sign up' %>
+    <% if @user.new_record? %>
+        <%= f.submit 'Sign up' %>
+    <% else %>
+        <%= f.submit 'Update Profile' %>
+    <% end %>
 <% end %>
