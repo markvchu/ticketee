@@ -1,14 +1,19 @@
 <% title(@project.name, @ticket.title, 'Tickets') %>
 <div id="ticket">
   <span id='author'>Created by <%= @ticket.user.email %></span>
+
   <h2><%= @project.name %>/<%= @ticket.title %></h2>
   <%= simple_format(@ticket.description) %>
 </div>
 
-<%= link_to 'Edit Ticket', edit_project_ticket_path(@project, @ticket) %>
-<%= link_to 'Delete Ticket', project_ticket_path(@project, @ticket),
-            method: :delete,
-            data: {
-                    confirm: 'Are you sure you want to delete this ticket?'} %>
+<% authorized?(:'edit tickets', @project) do %>
+    <%= link_to 'Edit Ticket', edit_project_ticket_path(@project, @ticket) %>
+<% end %>
+<% authorized?("delete tickets", @project) do %>
+    <%= link_to 'Delete Ticket', project_ticket_path(@project, @ticket),
+                method: :delete,
+                data: {
+                        confirm: 'Are you sure you want to delete this ticket?'} %>
+<% end %>
 <%= link_to 'Return', project_path(@project) %>
 
