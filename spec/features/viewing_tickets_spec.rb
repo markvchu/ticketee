@@ -22,6 +22,8 @@ feature 'Viewing tickets' do
                        description: "Isn't a joke.")
 
     visit '/'
+    define_permission!(user, 'view', textmate_2)
+    sign_in_as!(user)
   end
 
   scenario 'Viewing tickets for a given project' do
