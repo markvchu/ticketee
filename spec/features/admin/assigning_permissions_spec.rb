@@ -21,4 +21,12 @@ feature 'Assigning permissions' do
     sign_in_as!(user)
     expect(page).to have_content(project.name)
   end
+
+  scenario 'Viewing a project not permit' do
+    click_button 'Update'
+    click_link 'Sign out'
+    sign_in_as!(user)
+    expect(page).to have_no_content(project.name)
+  end
+
 end
