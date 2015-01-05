@@ -12,4 +12,4 @@ User.create(email: 'admin@example.com',
                          password_confirmation: 'password',
                          admin: true)
 
-Project.create(name: "Ticketee Beta")
+Project.create(name: 'Ticketee Beta')
