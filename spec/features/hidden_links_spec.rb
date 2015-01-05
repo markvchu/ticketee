@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 feature 'hidden link' do
-  let(:user) { FactoryGirl.create(:user) }
-  let(:admin) { FactoryGirl.create(:admin_user) }
-  let(:project) { FactoryGirl.create(:project) }
-  let(:ticket) { FactoryGirl.create(:ticket, project: project, user: user) }
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:admin) { FactoryGirl.create(:admin_user) }
+  let!(:project) { FactoryGirl.create(:project) }
+  let!(:ticket) { FactoryGirl.create(:ticket, project: project, user: user) }
 
   context 'anonymous users' do
     scenario 'cannot see the New Project link' do
