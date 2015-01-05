@@ -1,4 +1,4 @@
-<%= form_for [@project, @ticket], html: { multipart: true } do |f| %>
+<%= form_for [@project, @ticket], html: {multipart: true} do |f| %>
     <% if @ticket.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@ticket.errors.count, 'error') %>
@@ -20,9 +20,13 @@
       <%= f.text_field :description %>
     </p>
 
-    <p>
-      <%= f.label :asset, 'File' %><br>
-      <%= f.file_field :asset %>
-    </p>
+
+    <% number = 0 %>
+    <%= f.fields_for :assets do |asset| %>
+        <p>
+          <%= asset.label :asset, "File ##{number += 1}" %>
+          <%= asset.file_field :asset %>
+        </p>
+    <% end %>
     <p><%= f.submit %></p>
 <% end %>
