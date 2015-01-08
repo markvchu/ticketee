@@ -1,6 +1,7 @@
 <% title(@project.name, @ticket.title, 'Tickets') %>
 <div id="ticket">
   <span id='author'>Created by <%= @ticket.user.email %></span>
+  <%= render @ticket.state if @ticket.state %>
 
   <h2><%= @project.name %>/<%= @ticket.title %></h2>
   <%= simple_format(@ticket.description) %>

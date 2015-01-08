@@ -12,6 +12,10 @@
         </div>
     <% end %>
     <p>
+      <%= f.label :state_id %>
+      <%= f.select :state_id, @states.map { |s| [s.name, s.id] }, selected: @ticket.state_id %>
+    </p>
+    <p>
       <%= f.label :text %><br>
       <%= f.text_area :text %>
     </p>
