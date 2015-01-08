@@ -8,7 +8,11 @@ Rails.application.routes.draw do
           as: 'set_permissions'
     end
 
-    resources :states
+    resources :states do
+      member do
+        get :make_default
+      end
+    end
   end
 
   root 'projects#index'
