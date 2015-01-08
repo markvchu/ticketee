@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_many :permissions
+  has_many :comments
 
   validates :name, presence: true
   validates :email, presence: true

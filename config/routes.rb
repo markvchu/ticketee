@@ -18,6 +18,10 @@ Rails.application.routes.draw do
 
   resources :files
 
+  resources :tickets do
+    resources :comments
+  end
+
   get '/signin', to: 'sessions#new'
   post '/signin', to: 'sessions#create'
   delete '/signout', to: 'sessions#destroy', as: 'signout'
