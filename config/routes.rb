@@ -17,7 +17,11 @@ Rails.application.routes.draw do
 
   root 'projects#index'
   resources :projects do
-    resources :tickets
+    resources :tickets do
+      collection do
+        get :search
+      end
+    end
   end
 
   resources :users
