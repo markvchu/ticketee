@@ -52,6 +52,7 @@ feature 'Creating comments' do
   end
 
   scenario 'Adding a tag to a ticket' do
+    define_permission!(user, 'tag', project)
     click_link ticket.title
     within('#ticket #tags') do
       expect(page).to_not have_content('bug')

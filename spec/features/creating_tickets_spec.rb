@@ -8,6 +8,7 @@ feature 'Creating Tickets' do
 
     define_permission!(user, 'view', project)
     define_permission!(user, 'create tickets', project)
+    define_permission!(user, 'tag', project)
     sign_in_as!(user)
 
     visit '/'
