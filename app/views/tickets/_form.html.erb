@@ -20,10 +20,7 @@
       <%= f.text_field :description %>
     </p>
 
-    <p>
-      <%= f.label :tag_names %><br/>
-      <%= f.text_field :tag_names %>
-    </p>
+    <%= render 'tags/form', f: f %>
 
     <% number = 0 %>
     <div id="files">
