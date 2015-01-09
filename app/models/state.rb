@@ -1,4 +1,6 @@
 class State < ActiveRecord::Base
+  has_many :tickets
+
   def to_s
     name
   end
