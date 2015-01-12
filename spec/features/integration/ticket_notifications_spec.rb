@@ -6,8 +6,8 @@ feature 'Ticket Notifications' do
   let!(:project) { FactoryGirl.create(:project) }
   let!(:ticket) do
     FactoryGirl.create(:ticket,
-            :project => project,
-            :user => alice)
+                       :project => project,
+                       :user => alice)
   end
   before do
     ActionMailer::Base.deliveries.clear
@@ -16,6 +16,7 @@ feature 'Ticket Notifications' do
     sign_in_as!(bob)
     visit '/'
   end
+
   scenario 'Ticket owner receives notifications about comments' do
     click_link project.name
     click_link ticket.title
@@ -28,5 +29,25 @@ feature 'Ticket Notifications' do
     within('#ticket h2') do
       page.should have_content(ticket.title)
     end
+  end
+
+
+  scenario 'Comment authors are automatically subscribed to a ticket' do
+    click_link project.name
+    click_link ticket.title
+    fill_in 'comment_text', :with => 'Is it out yet?'
+    click_button 'Create Comment'
+    page.should have_content('Comment has been created.')
+    find_email!(alice.email)
+    click_link 'Sign out'
+    reset_mailer
+    sign_in_as!(alice)
+    click_link project.name
+    click_link ticket.title
+    fill_in 'comment_text', :with => 'Not yet!'
+    click_button 'Create Comment'
+    page.should have_content('Comment has been created.')
+    find_email!(bob.email)
+    lambda { find_email!(alice.email) }.should raise_error
   end
 end

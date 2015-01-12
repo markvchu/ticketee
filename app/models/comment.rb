@@ -10,6 +10,8 @@ class Comment < ActiveRecord::Base
   after_create :set_ticket_state
   after_create :associate_tags_with_ticket
 
+  after_create :creator_watches_ticket
+
   delegate :project, to: :ticket
 
   attr_accessor :tag_names
@@ -32,6 +34,12 @@ class Comment < ActiveRecord::Base
       end
       self.ticket.tags += tags
       self.ticket.save!
+    end
+  end
+
+  def creator_watches_ticket
+    if user
+      ticket.watchers << user unless ticket.watchers.include?(user)
     end
   end
 end
