@@ -20,3 +20,7 @@
 
 public/uploads
 uploads/
+.capistrano/
+.vagrant
+config/secrets.yml
+ubuntu_14.04_64/cookbooks

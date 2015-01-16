@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://ruby.taobao.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -36,13 +36,29 @@ gem 'cancan', '~> 1.6.10'
 gem 'carrierwave', '~> 0.10.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+# Use unicorn as the app server
+gem 'unicorn'
+gem 'pg'
+
+group :development do
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv', '~> 2.0' # required
+  gem 'capistrano-rbenv-install', '~> 1.2.0'
+  gem 'capistrano-postgresql', '~> 4.2.0'
+  gem 'capistrano-safe-deploy-to', '~> 1.1.1'
+  gem 'capistrano-faster-assets', '~> 1.0'
+  gem 'capistrano-unicorn-nginx', '~> 3.1.0'
+  gem 'capistrano-secrets-yml', '~> 1.0.0'
+end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
 group :test, :development do
   gem 'rspec-rails', '~> 2.14.2'
+  gem 'dotenv-rails'
 end
+
 group :test do
   gem 'capybara', '2.1.0'
   gem 'factory_girl_rails', '~> 4.2.1'
